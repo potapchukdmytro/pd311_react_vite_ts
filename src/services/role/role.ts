@@ -1,0 +1,25 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { ServiceResponse } from "../../types";
+import type { Role } from "./types";
+
+export const roleApi = createApi({
+    reducerPath: "roleApi",
+    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+    tagTypes: ["Role"],
+    endpoints: (builder) => ({
+        getRoles: builder.query<ServiceResponse<Role[]>, void>({
+            query: () => "role",
+            providesTags: ["Role"],
+        }),
+        deleteRole: builder.mutation<ServiceResponse<null>, string>({
+            query: (id) => ({
+                url: "role",
+                method: "DELETE",
+                params: {id}
+            }),
+            invalidatesTags: ["Role"]
+        })
+    }),
+});
+
+export const { useGetRolesQuery, useDeleteRoleMutation } = roleApi;
