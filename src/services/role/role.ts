@@ -15,11 +15,32 @@ export const roleApi = createApi({
             query: (id) => ({
                 url: "role",
                 method: "DELETE",
-                params: {id}
+                params: { id },
             }),
-            invalidatesTags: ["Role"]
+            invalidatesTags: ["Role"],
+        }),
+        createRole: builder.mutation<ServiceResponse<null>, { name: string }>({
+            query: (role) => ({
+                url: "role",
+                method: "POST",
+                body: role,
+            }),
+            invalidatesTags: ["Role"],
+        }),
+        updateRole: builder.mutation<ServiceResponse<null>, Role>({
+            query: (role) => ({
+                url: "role",
+                method: "PUT",
+                body: role,
+            }),
+            invalidatesTags: ["Role"],
         })
     }),
 });
 
-export const { useGetRolesQuery, useDeleteRoleMutation } = roleApi;
+export const {
+    useGetRolesQuery,
+    useDeleteRoleMutation,
+    useCreateRoleMutation,
+    useUpdateRoleMutation
+} = roleApi;
