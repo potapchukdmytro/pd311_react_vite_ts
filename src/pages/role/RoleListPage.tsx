@@ -111,7 +111,7 @@ const RoleListPage: React.FC = () => {
                 <ProgressSpinner />
             ) : (
                 !isError &&
-                data?.payload !== null && (
+                data?.payload !== null ? (
                     <>
                         <Toast ref={toast} />
                         <ContextMenu
@@ -159,6 +159,11 @@ const RoleListPage: React.FC = () => {
                             Add
                         </Button>
                     </>
+                ) : isError && (
+                    <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
+                        <h2 style={{color: "red"}}>Failed connect to server</h2>
+                        <img alt="error" src="https://t4.ftcdn.net/jpg/03/58/75/95/360_F_358759526_1DbvGd9bnHops9Vns8LRxyCgpk0mrA5i.jpg"/>
+                    </div>
                 )
             )}
         </>
