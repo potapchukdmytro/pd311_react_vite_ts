@@ -3,20 +3,32 @@ import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import type { MenuItem } from "primereact/menuitem";
 import { Avatar } from 'primereact/avatar'; 
+import { useNavigate } from "react-router";
 
 const Navbar: React.FC = () => {
+    const navigate = useNavigate();
+
     const items: MenuItem[] = [
         {
             label: 'Home',
-            icon: 'pi pi-home'
+            icon: 'pi pi-home',
+            command() {
+               navigate('/')
+            },
         },
         {
-            label: 'Features',
-            icon: 'pi pi-star'
+            label: 'Roles',
+            icon: 'pi pi-star',
+            command() {
+               navigate('/roles')
+            },
         },
         {
-            label: 'Projects',
+            label: 'Users',
             icon: 'pi pi-search',
+            command() {
+               navigate('/users')
+            },
         }
     ];
 

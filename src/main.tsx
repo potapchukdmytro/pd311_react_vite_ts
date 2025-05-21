@@ -5,11 +5,14 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import "./index.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { BrowserRouter } from "react-router";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </BrowserRouter>
     </StrictMode>
 );
